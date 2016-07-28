@@ -16,7 +16,7 @@ A perfect vaporeon will be show as "VAPOREON (CP XXX) : 100% (15/15/15)"
 git clone -b master https://github.com/Treast/PokemonGo-Stats.git
 cd PokemonGo-Stats
 pip install -r requirements.txt (Might need to sudo)
-python2 main.py -a AUTH_SERVICE -u USERNAME -p PASSWORD
+python2 main.py -a AUTH_SERVICE -u USERNAME -p PASSWORD -l LIMIT-IV
 ```
 
 -a can be either 'ptc' or 'google'
