@@ -20,6 +20,7 @@ python2 main.py -a AUTH_SERVICE -u USERNAME -p PASSWORD -l LIMIT-IV
 ```
 
 -a can be either 'ptc' or 'google'
+
 -l is a percent. Pokemon with a smaller IV percent won't be shown.
 
 ### Example of usage
