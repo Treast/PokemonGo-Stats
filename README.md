@@ -20,6 +20,12 @@ python2 main.py -a AUTH_SERVICE -u USERNAME -p PASSWORD -l LIMIT-IV
 ```
 
 -a can be either 'ptc' or 'google'
+-l is a percent. Pokemon with a smaller IV percent won't be shown.
+
+### Example of usage
+```
+python2 main.py -a google -u pikachu@gmail.com -p ashsucks -l 80
+```
 
 ## Credits
 - [Boren](https://github.com/Boren/PokemonGO-IV-Renamer) for base script
