@@ -14,6 +14,7 @@ class Renamer():
         parser.add_argument("-a", "--auth_service")
         parser.add_argument("-u", "--username")
         parser.add_argument("-p", "--password")
+        parser.add_argument("-l", "--limit")
         parser.add_argument("--clear", action = 'store_true', default = False)
 
         self.config = parser.parse_args()
@@ -25,6 +26,8 @@ class Renamer():
         self.init_config()
         self.setup_api()
         self.get_pokemons()
+        self.calc_iv()
+        self.pokemons.sort(key=lambda x: x['iv'])
         self.show_stats()
 
     def setup_api(self):
@@ -70,17 +73,21 @@ class Renamer():
                         'cp': cp,
                         'attack': attack,
                         'defense': defense,
-                        'stamina': stamina
+                        'stamina': stamina,
+                        'iv': 0,
                     })
                 except:
                     pass
 
 
-    def show_stats(self):
-        
+    def calc_iv(self):
         for pokemon in self.pokemons:
-            iv = pokemon['attack'] + pokemon['defense'] + pokemon['stamina']
-            print pokemon['name'].upper() + " CP(" + str(pokemon['cp']) + ") " + str(int((iv*100)/45)) + "% (" + str(pokemon['attack']) + "/" + str(pokemon['defense']) + "/" + str(pokemon['stamina']) + ")"
+            pokemon['iv'] = pokemon['attack'] + pokemon['defense'] + pokemon['stamina']      
+    
+    def show_stats(self):      
+        for pokemon in self.pokemons:
+            if pokemon['iv'] >= (int(self.config.limit)*45)/100:
+                print pokemon['name'].upper() + " CP(" + str(pokemon['cp']) + ") " + str(int((pokemon['iv']*100)/45)) + "% (" + str(pokemon['attack']) + "/" + str(pokemon['defense']) + "/" + str(pokemon['stamina']) + ")"
 
 
 
